@@ -10,11 +10,11 @@ The generation of the executable jar file can be performed by issuing the follow
 
 This will create a jar file **quarkus-runner.jar** within the _target_ maven folder. This can be started by executing the following command
 
-    java -Dquarkus.http.port=8180 -jar target/quarkus-runner.jar
+    java  -jar target/quarkus-runner.jar
 
 You can also start the project in development mode where it automatically updates code on the fly as you save your files:
 
-    mvn -Dquarkus.http.port=8180 clean compile quarkus:dev
+    mvn  clean compile quarkus:dev
 
 Last but not least, you can build the whole application into a one statically linked executable that does not require JVM:
 
@@ -22,13 +22,27 @@ Last but not least, you can build the whole application into a one statically li
 
 Native executable build might take a minute. Then you can execute it on a compatible architecture without JVM:
 
-    ./target/quarkus-runner -Dquarkus.http.port=8180
+    ./target/quarkus-runner 
 
 ## Note on Native image
 
  * You need GraalVM installed from the GraalVM web site. Using the community edition is enough. Version 19.1.1+ is required.
  * The GRAALVM_HOME environment variable configured appropriately
  * The native-image tool must be installed; this can be done by running ```gu install native-image``` from your GraalVM directory
+
+## Prepare for cloud deployment
+### Build the docker image
+
+    mvn clean compile quarkus:build
+    docker build -t quarkus-service-b:1.0 .
+
+### Test the docker image
+
+    docker run -i --rm -p 8080:8080 quarkus-service-b:1.0 
+    
+   Test the image by hitting this url
+   
+    http://localhost:8080/data/client/service/host
 
 ## Specification examples
 
