@@ -11,7 +11,7 @@
     <failOnMissingWebXml>false</failOnMissingWebXml>
     <maven.compiler.source>1.8</maven.compiler.source>
     <final.name>quarkus</final.name>
-    <version.quarkus>1.2.0.Final</version.quarkus>
+    <version.quarkus>3.8.6.1</version.quarkus>
   </properties>
   <dependencies>
     <dependency>
